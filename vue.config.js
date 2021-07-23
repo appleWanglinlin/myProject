@@ -1,8 +1,13 @@
 module.exports = {
   devServer: {
     proxy: {
-      '/server': {
-        target: 'http://qa-els.izehui.com/'
+      // '/admin-api': {
+      //   target: 'http://laravel.admin.com/'
+      // },
+      '/api': {
+        target: 'http://laravel.com/',
+        changeOrigin: true,
+        // logLevel: 'debug'
       }
     }
   }
