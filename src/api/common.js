@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
-export function getAllCategory() {
+export function getAllCategory(params) {
   return request({
-    url: '/test',
-    method: 'get'
+    url: '/api/barcode',
+    method: 'get',
+    params
   })
 }

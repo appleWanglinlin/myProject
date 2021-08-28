@@ -1,11 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="form" :model="form" :rules="rules">
+    <el-form ref="form" class="login-form" :model="form" :rules="rules">
       <el-form-item prop="user_account" label="用户名">
-        <el-input v-model="form.user_account"></el-input>
+        <el-input v-model="form.user_account" />
       </el-form-item>
       <el-form-item prop="user_password" label="密码">
-        <el-input v-model="form.user_password"></el-input>
+        <el-input v-model="form.user_password" />
       </el-form-item>
       <el-button style="width: 100%" type="primary" @click="handleLogin">登录</el-button>
     </el-form>
@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { login } from '@/api/login'
 export default {
   data() {
     return {
@@ -35,8 +34,8 @@ export default {
     handleLogin() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          login(this.form).then(res => {
-            console.log('login', res)
+          this.$store.dispatch('user/login', this.form).then(() => {
+            this.$router.push('/')
           })
         }
       })

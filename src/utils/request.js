@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-// import { getToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 const service = axios.create({
   baseURL: '/owms-server'
 })
 
 service.interceptors.request.use(config => {
-  config.headers['Authorization'] = 'Bearer null'
+  config.headers['Authorization'] = 'Bearer ' + getToken()
   return config
 }, error => {
   return Promise.reject(error)
@@ -26,5 +26,4 @@ service.interceptors.response.use(response => {
 }, error => {
   return Promise.reject(error)
 })
-
 export default service
