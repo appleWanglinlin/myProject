@@ -4,32 +4,17 @@
       <!-- <span>泽汇海外仓</span> -->
       <!-- <span style="font-size:14px">After sales management system</span> -->
     </div>
-    <!-- :width="sidebar.isFold ? '200px' : '50px'" -->
-    <!-- <el-menu
-      :collapse="sidebar.isFold"
-      background-color="#545c64"
-      text-color="rgb(255, 255, 255)"
-      active-text-color="#409eff"
-    >
-      <el-submenu v-for="(item, index) in menuList" :key="index" :index="item.name">
-        <template slot="title">
-          <i class="el-icon-message" />
-          {{ item.name }}
-        </template>
-        <template v-if="item.children.length">
-          <el-menu-item v-for="(sItem, sIndex) in item.children" :key="sIndex" :index="sItem.name">{{ sItem.name }}</el-menu-item>
-        </template>
-      </el-submenu>
-    </el-menu> -->
     <el-menu
       :style="{width: sidebar.isFold ? '64px' : '200px'}"
       :collapse="sidebar.isFold"
+      text-color="rgb(255, 255, 255)"
+      background-color="#545c64"
     >
       <template v-for="(item, index) in menuList">
         <template v-if="item.children && item.children.length">
           <el-submenu :key="index" :index="index + ''" class="level2">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="el-icon-location" />
               <span slot="title">{{ item.name }}</span>
             </template>
             <template v-for="(sItem, sIndex) in item.children">
@@ -49,7 +34,7 @@
         </template>
         <template v-else>
           <el-menu-item :key="index" :index="index + ''" class="level1">
-            <i class="el-icon-setting"></i>
+            <i class="el-icon-setting" />
             <span slot="title">{{ item.name }}</span>
           </el-menu-item>
         </template>
@@ -140,6 +125,23 @@ export default {
           ]
         },
         {
+          name: '客户与订单',
+          children: [
+            {
+              name: 'Amazon订单'
+            },
+            {
+              name: '激活买家管理'
+            },
+            {
+              name: '激活异常管理'
+            },
+            {
+              name: '评价监控'
+            }
+          ]
+        },
+        {
           name: 'EDM',
           children: [
             {
@@ -169,7 +171,9 @@ export default {
 
 <style lang='scss' scoped>
 .sidebar-container {
+  max-height: 100vh;
   height: 100vh;
+  overflow-y: auto;
   background-color: #545c64;
   .el-menu {
     border-right: none;
