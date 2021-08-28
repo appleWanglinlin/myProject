@@ -1,8 +1,8 @@
 <template>
-  <div class='navbar'>
+  <div class="navbar">
     <div class="navbar-left">
       <div class="icon" @click="toggleSidebar">
-        <i :class="isFold ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
+        <i :class="sidebar.isFold ? 'el-icon-s-unfold' : 'el-icon-s-fold'" />
       </div>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   components: {
@@ -31,9 +32,9 @@ export default {
     }
   },
   computed: {
-    isFold() {
-      return this.$store.state.app.sidebar.isFold
-    }
+    ...mapGetters([
+      'sidebar'
+    ])
   },
   created() {
 

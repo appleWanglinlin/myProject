@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// import { getPermissionList } from '@/api/permission'
 export default {
   components: {
 
@@ -18,7 +19,9 @@ export default {
 
   },
   created() {
-
+    // getPermissionList({ action_name: '' }).then(res => {
+    //   console.log('getPermissionList', res)
+    // })
   },
   mounted() {
 

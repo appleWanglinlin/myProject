@@ -11,7 +11,6 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Home',
     redirect: '/home',
     component: () => import('@/layout'),
     children: [
