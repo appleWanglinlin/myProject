@@ -1,7 +1,7 @@
 <template>
   <div class='navbar'>
     <div class="navbar-left">
-      <div class="icon" @click="isFold = !isFold">
+      <div class="icon" @click="toggleSidebar">
         <i :class="isFold ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
       </div>
       <el-breadcrumb separator="/">
@@ -28,11 +28,12 @@ export default {
   },
   data() {
     return {
-      isFold: false
     }
   },
   computed: {
-
+    isFold() {
+      return this.$store.state.app.sidebar.isFold
+    }
   },
   created() {
 
@@ -41,7 +42,9 @@ export default {
 
   },
   methods: {
-
+    toggleSidebar() {
+      this.$store.commit('app/TOGGLE_SIDEBAR')
+    }
   }
 }
 </script>

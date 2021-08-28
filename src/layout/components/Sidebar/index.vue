@@ -1,11 +1,11 @@
 <template>
 <div class="sidebar">
-  <div class="title">
+  <div class="title" v-show="isCollapse">
     <span>售后管理系统</span>
     <!-- <span style="font-size:14px">After sales management system</span> -->
   </div>
-  <el-aside width="200px">
-    <el-menu 
+  <el-aside :width="isCollapse ? '200px' : '50px'">
+    <el-menu :collapse="isCollapse"
              background-color="#545c64"
              text-color="rgb(255, 255, 255)"
              active-text-color="#409eff">
@@ -72,7 +72,9 @@ export default {
     }
   },
   computed: {
-
+    isCollapse() {
+      return this.$store.state.app.sidebar.isFold
+    }
   },
   created() {
 
@@ -91,7 +93,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 200px;
+  // width: 200px;
   height: 100%;
   background-color: #545c64;
   z-index: 1;
@@ -106,8 +108,13 @@ export default {
   .el-aside {
     overflow: hidden;
     .el-menu {
+      box-sizing: border-box;
       ::v-deep .el-submenu__title {
+        padding-left: 15px !important;
         text-align: left;
+        .el-icon-message {
+          margin-right: 15px;
+        }
       }
       .el-menu-item {
         padding-left: 50px !important;
