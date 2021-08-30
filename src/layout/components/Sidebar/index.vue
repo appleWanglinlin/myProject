@@ -7,35 +7,36 @@
     <el-menu
       :style="{width: sidebar.isFold ? '64px' : '200px'}"
       :collapse="sidebar.isFold"
+      :router="true"
       text-color="rgb(255, 255, 255)"
       background-color="#545c64"
     >
       <template v-for="(item, index) in menuList">
         <template v-if="item.children && item.children.length">
-          <el-submenu :key="index" :index="index + ''" class="level2">
+          <el-submenu :key="index" :index="item.action_url" class="level2">
             <template slot="title">
               <i class="el-icon-location" />
-              <span slot="title">{{ item.name }}</span>
+              <span slot="title">{{ item.action_name }}</span>
             </template>
             <template v-for="(sItem, sIndex) in item.children">
               <template v-if="sItem.children && sItem.children.length">
-                <el-submenu :key="`${index}-${sIndex}`" :index="`${index}-${sIndex}`" class="level3">
-                  <span slot="title">{{ sItem.name }}</span>
+                <el-submenu :key="`${index}-${sIndex}`" :index="sItem.action_url" class="level3">
+                  <span slot="title">{{ sItem.action_name }}</span>
                   <template v-for="(tItem, tIndex) in sItem.children">
-                    <el-menu-item :key="`${index}-${sIndex}-${tIndex}`" :index="`${index}-${sIndex}-${tIndex}`">{{ tItem.name }}</el-menu-item>
+                    <el-menu-item :key="`${index}-${sIndex}-${tIndex}`" :index="tItem.action_url">{{ tItem.action_name }}</el-menu-item>
                   </template>
                 </el-submenu>
               </template>
               <template v-else>
-                <el-menu-item :key="`${index}-${sIndex}`" :index="`${index}-${sIndex}`">{{ sItem.name }}</el-menu-item>
+                <el-menu-item :key="`${index}-${sIndex}`" :index="sItem.action_url">{{ sItem.action_name }}</el-menu-item>
               </template>
             </template>
           </el-submenu>
         </template>
         <template v-else>
-          <el-menu-item :key="index" :index="index + ''" class="level1">
+          <el-menu-item :key="index" :index="item.action_url" class="level1">
             <i class="el-icon-setting" />
-            <span slot="title">{{ item.name }}</span>
+            <span slot="title">{{ item.action_name }}</span>
           </el-menu-item>
         </template>
       </template>
@@ -70,7 +71,7 @@ export default {
   name: 'Sidebar',
   data() {
     return {
-      menuList: [
+      menuList1: [
         {
           name: 'A',
           children: [
@@ -86,9 +87,6 @@ export default {
               name: 'A2'
             }
           ]
-        },
-        {
-          name: '外部链接'
         },
         {
           name: '基础设置',
@@ -146,6 +144,22 @@ export default {
           children: [
             {
               name: '我的邮件模板'
+            }
+          ]
+        }
+      ],
+      menuList: [
+        {
+          action_name: '菜单1',
+          action_url: '/menu1',
+          children: [
+            {
+              action_name: 'demo1',
+              action_url: '/demo1'
+            },
+            {
+              action_name: 'demo2',
+              action_url: '/demo2'
             }
           ]
         }

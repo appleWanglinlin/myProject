@@ -1,11 +1,10 @@
 <template>
-  <div class="home-container">
-    home
+  <div class=''>
+    <h1>demo1</h1>
   </div>
 </template>
 
 <script>
-import { getPermissionList } from '@/api/permission'
 export default {
   components: {
 
@@ -19,9 +18,7 @@ export default {
 
   },
   created() {
-    getPermissionList({ action_name: '' }).then(res => {
-      console.log('getPermissionList', res)
-    })
+
   },
   mounted() {
 
